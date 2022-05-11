@@ -176,7 +176,7 @@ def learn_denoising_model(num_res_blocks=5, quick_mode=False):
     :param quick_mode: True for testing purpose
     :return: a train model
     """
-    images = sol5_utils.images_for_denoising()
+    images = utils.images_for_denoising()
     model = build_nn_model(24, 24, 48, num_res_blocks)
     if not quick_mode:
         train_model(model, images, lambda img: add_gaussian_noise(img, 0, 0.2), 100,
@@ -194,7 +194,7 @@ def add_motion_blur(image, kernel_size, angle):
     :param angle: an angle in radians in the range [0,π)
     :return: image with blur (with the given angle)
     """
-    kernel = sol5_utils.motion_blur_kernel(kernel_size, angle)
+    kernel = utils.motion_blur_kernel(kernel_size, angle)
     cor_image = ndimage.filters.convolve(image, kernel)
     return cor_image
 
@@ -219,7 +219,7 @@ def learn_deblurring_model(num_res_blocks=5, quick_mode=False):
     :param quick_mode: True for testing purpose
     :return: a train model
     """
-    images = sol5_utils.images_for_deblurring()
+    images = utils.images_for_deblurring()
     model = build_nn_model(16, 16, 32, num_res_blocks)
     if not quick_mode:
         train_model(model, images, lambda img: random_motion_blur(img, [7]), 100,
