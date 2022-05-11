@@ -7,7 +7,7 @@ from skimage.color import rgb2gray
 import math
 from tensorflow.keras.optimizers import Adam
 from matplotlib import pyplot as plt
-import sol5_utils
+import utils
 
 GRAY_SCALE_IMG = 1
 RGB_DIM = 3
